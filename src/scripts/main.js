@@ -47,7 +47,7 @@
   app.factory('schedule', ['$http', ($http) => {
     return {
       generate: (data) => {
-        return $http.post('http://localhost:4567', data);
+        return $http.post('http://ec2-54-165-242-22.compute-1.amazonaws.com:4567/', data);
       }
     };
   }]);

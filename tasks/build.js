@@ -9,7 +9,7 @@ import runSequence from 'run-sequence';
 
 // build for production: concatenate, minify
 gulp.task('build', (done) => {
-  runSequence('clean', 'compile', 'bundle', () => {
+  runSequence('clean', 'compile', () => {
     gulp.src(['public/*[!lib]*/*.html', 'public/*.html'])
       .pipe(useref())
       .pipe(gulpif(['*.js', '!vendor/*.js'], uglify()))
