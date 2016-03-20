@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web Template</title>
+
+  <!-- build:css vendor/vendor.css -->
+  <link rel="stylesheet" type="text/css" href="lib/node/normalize.css">
+  <!-- endbuild -->
+
+  <!-- build:css application.min.css -->
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+  <!-- endbuild -->
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'XX-XXXXXXXX-X', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+<body>
+  <h1>Web Template</h1>
+
+  <div id="fibonacci" class="fibonacci"></div>
+
+  <section class="features">
+    <ul>
+      <li>Compiles your ES6 code with Babel for use in the browser</li>
+      <li>The power of SASS for your stylesheets</li>
+      <li>Unit testing with Karma and Jasmine</li>
+      <li>Everything automated with Gulp as the task runner</li>
+    </ul>
+  </section>
+
+  <!-- build:js vendor/vendor.js -->
+  <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="lib/node/polyfill.min.js"></script>
+  <script type="text/javascript" src="lib/system.js/dist/system-polyfills.js"></script>
+  <script type="text/javascript" src="lib/system.js/dist/system.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js application.min.js -->
+  <script type="text/javascript">//placeholder for production build</script>
+  <!-- endbuild -->
+
+  <script type="text/javascript">
+    System.config({
+      defaultJSExtensions: 'js'
+    });
+    System.import('scripts/main')
+      .catch(console.error.bind(console));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+$light-border: #d3d3d3;
+
+h1 {
+  text-align: center;
+}
+
+.fibonacci {
+  margin: 20px;
+  text-align: center;
+}
+
+.features {
+  border: 1px solid $light-border;
+  border-radius: 5px;
+  margin: 10px;
+
+  @media(min-width: 600px) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
+
+  @media(min-width: 800px) {
+    width: 70%;
+  }
+
+  li {
+    margin-bottom: 5px;
+  }
+
+  ul {
+    margin-left: auto;
+    margin-right: auto;
+
+    @media(min-width: 800px) {
+      width: 70%;
+    }
+  }
+}
