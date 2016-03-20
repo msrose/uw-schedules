@@ -6,18 +6,6 @@ import autoprefixer from 'gulp-autoprefixer';
 import cssnano from 'gulp-cssnano';
 import htmlmin from 'gulp-htmlmin';
 import runSequence from 'run-sequence';
-import Builder from 'systemjs-builder';
-
-//bundle modules for production
-gulp.task('bundle', (done) => {
-  let builder = new Builder('public');
-  builder.bundle('scripts/main.js', 'dist/application.min.js', {
-    minify: true,
-    config: {
-      defaultJSExtensions: 'js'
-    }
-  }).then(() => done()).catch(done);
-});
 
 // build for production: concatenate, minify
 gulp.task('build', (done) => {

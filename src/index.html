@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Web Template</title>
+  <title>UW Schedule Generator</title>
 
   <!-- build:css vendor/vendor.css -->
   <link rel="stylesheet" type="text/css" href="lib/node/normalize.css">
@@ -20,43 +20,65 @@
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'XX-XXXXXXXX-X', 'auto');
+    ga('create', 'UA-73693150-3', 'auto');
     ga('send', 'pageview');
   </script>
 </head>
 
 <body>
-  <h1>Web Template</h1>
-
-  <div id="fibonacci" class="fibonacci"></div>
-
-  <section class="features">
-    <ul>
-      <li>Compiles your ES6 code with Babel for use in the browser</li>
-      <li>The power of SASS for your stylesheets</li>
-      <li>Unit testing with Karma and Jasmine</li>
-      <li>Everything automated with Gulp as the task runner</li>
-    </ul>
-  </section>
+  <div ng-controller="MainController" class="main">
+    <h1 ng-click="toggleForm()">University of Waterloo Schedule Generator</h1>
+    <form ng-show="showForm">
+      <fieldset ng-disabled="generating">
+        <div class="col">
+          <div class="group">
+            <label for="title">Title</label><input type="text" ng-model="data.title" id="title">
+          </div>
+          <div class="group">
+            <label for="term">Term</label><input type="text" ng-model="data.term" id="term">
+          </div>
+          <div class="group">
+            <label for="colors">Colors</label><input type="text" ng-model="data.colors" id="colors"><br>
+          </div>
+        </div>
+        <div class="col">
+          <div class="group">
+            <div>
+              <label>Courses</label>
+            </div>
+            <div>
+              <div ng-repeat="course in data.course_numbers track by $index">
+                <input type="text" ng-model="data.course_numbers[$index]"><button ng-click="removeCourse($index)">X</button>
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <button ng-click="addCourse()">Add Course</button>
+          </div>
+        </div>
+        <div class="footer">
+          <button ng-click="generateSchedule()">Generate Schedule</button>
+          <button ng-click="toggleForm()">Hide Form</button>
+        </div>
+      </fieldset>
+    </form>
+    <hr>
+    <div ng-show="generating">Generating schedule...</div>
+    <div ng-show="!generating">
+      {{error}}
+      <iframe srcdoc="{{scheduleContent | toTrusted}}">No iframes!</iframe>
+    </div>
+  </div>
 
   <!-- build:js vendor/vendor.js -->
   <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="lib/node/polyfill.min.js"></script>
-  <script type="text/javascript" src="lib/system.js/dist/system-polyfills.js"></script>
-  <script type="text/javascript" src="lib/system.js/dist/system.js"></script>
+  <script type="text/javascript" src="lib/angular/angular.min.js"></script>
   <!-- endbuild -->
 
   <!-- build:js application.min.js -->
-  <script type="text/javascript">//placeholder for production build</script>
+  <script type="text/javascript" src="scripts/main.js"></script>
   <!-- endbuild -->
-
-  <script type="text/javascript">
-    System.config({
-      defaultJSExtensions: 'js'
-    });
-    System.import('scripts/main')
-      .catch(console.error.bind(console));
-  </script>
 </body>
 
 </html>
