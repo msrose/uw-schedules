@@ -1,3 +1,5 @@
+$button-hover: #00f;
+
 .main {
   width: 100%;
 }
@@ -13,7 +15,7 @@ h1 {
   text-align: center;
 
   &:hover {
-    color: blue;
+    color: $button-hover;
   }
 }
 
@@ -62,4 +64,22 @@ button {
 
 fieldset {
   border: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
+
+  &:hover {
+    color: $button-hover;
+  }
+}
+
+.no-print {
+  @media print {
+    display: none;
+  }
 }
