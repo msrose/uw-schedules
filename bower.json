@@ -17,6 +17,7 @@
   "private": true,
   "dependencies": {
     "jquery": "~2.2.0",
-    "angular": "^1.5.2"
+    "angular": "^1.5.2",
+    "bootstrap": "^3.3.6"
   }
 }

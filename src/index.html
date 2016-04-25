@@ -7,7 +7,7 @@
   <title>UW Schedule Generator</title>
 
   <!-- build:css vendor/vendor.css -->
-  <link rel="stylesheet" type="text/css" href="lib/node/normalize.css">
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css">
   <!-- endbuild -->
 
   <!-- build:css application.min.css -->
@@ -24,52 +24,65 @@
     ga('send', 'pageview');
   </script>
 </head>
-
 <body>
-  <div ng-controller="MainController" class="main">
-    <div class="no-print">
-      <div class="text-center pointer" ng-show="!showForm" ng-click="toggleForm()">&darr; SHOW FORM &darr;</div>
-      <h1 ng-show="showForm" ng-click="toggleForm()">University of Waterloo Schedule Generator</h1>
-      <form ng-show="showForm">
-        <fieldset ng-disabled="generating">
-          <div class="col">
-            <div class="group">
-              <label for="title">Title</label><input type="text" ng-model="data.title" id="title">
-            </div>
-            <div class="group">
-              <label for="term">Term</label><input type="text" ng-model="data.term" id="term">
-            </div>
-            <div class="group">
-              <label for="colors">Colors</label><input type="text" ng-model="data.colors" id="colors"><br>
-            </div>
-          </div>
-          <div class="col">
-            <div class="group">
-              <div>
-                <label>Courses</label>
-              </div>
-              <div>
-                <div ng-repeat="course in data.course_numbers track by $index">
-                  <input type="text" ng-model="data.course_numbers[$index]"><button ng-click="removeCourse($index)">X</button>
+  <div ng-controller="MainController" class="container-fluid">
+    <div class="row no-print">
+      <div class="col-xs-12">
+        <div class="text-center" ng-show="!showForm">
+          <button class="btn" ng-click="toggleForm()">Show Form</button>
+        </div>
+        <h1 ng-show="showForm" class="text-center">University of Waterloo Schedule Generator</h1>
+        <div class="row">
+          <form ng-show="showForm">
+            <fieldset ng-disabled="generating">
+              <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <input class="form-control" type="text" ng-model="data.title" id="title">
+                </div>
+                <div class="form-group">
+                  <label for="term">Term</label>
+                  <input class="form-control" type="text" ng-model="data.term" id="term">
+                </div>
+                <div class="form-group">
+                  <label for="colors">Colors</label>
+                  <input class="form-control" type="text" ng-model="data.colors" id="colors">
                 </div>
               </div>
-            </div>
-            <div class="footer">
-              <button ng-click="addCourse()">Add Course</button>
-            </div>
+              <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                  <label>Courses</label>
+                  <div class="row course" ng-repeat="course in data.course_numbers track by $index">
+                    <div class="col-xs-10">
+                      <input type="text" class="form-control" ng-model="data.course_numbers[$index]">
+                    </div>
+                    <div class="col-xs-2">
+                      <button class="btn" ng-click="removeCourse($index)">X</button>
+                    </div>
+                  </div>
+                  <button class="btn" ng-click="addCourse()">Add Course</button>
+                </div>
+              </div>
+              <div class="col-xs-12">
+                <button class="btn btn-primary" ng-click="generateSchedule()">Generate Schedule</button>
+                <button class="btn" ng-click="toggleForm()">Hide Form</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="alert alert-info" ng-show="generating">Generating schedule...</div>
           </div>
-          <div class="footer">
-            <button ng-click="generateSchedule()">Generate Schedule</button>
-            <button ng-click="toggleForm()">Hide Form</button>
-          </div>
-        </fieldset>
-      </form>
-      <div ng-show="generating">Generating schedule...</div>
-      <hr>
+        </div>
+      </div>
     </div>
-    <div ng-show="!generating">
-      {{error}}
-      <iframe srcdoc="{{scheduleContent | toTrusted}}">No iframes!</iframe>
+    <div ng-show="!generating" class="row">
+      <div class="col-xs-12">
+        <div class="alert alert-danger" ng-show="error">{{error}}</div>
+        <iframe srcdoc="{{scheduleContent | toTrusted}}">Browser must support iframes to view schedules</iframe>
+      </div>
     </div>
   </div>
 
@@ -83,5 +96,4 @@
   <script type="text/javascript" src="scripts/main.js"></script>
   <!-- endbuild -->
 </body>
-
 </html>

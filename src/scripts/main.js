@@ -28,6 +28,7 @@
 
     $scope.generateSchedule = () => {
       $scope.generating = true;
+      $scope.error = '';
       let dataCopy = angular.copy($scope.data);
       dataCopy.colors = dataCopy.colors.split(',');
       dataCopy.course_numbers.forEach((codeList, i, courses) => {
