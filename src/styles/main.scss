@@ -1,3 +1,5 @@
+$table-border: #d3d3d3;
+
 iframe {
   border: 0;
   min-height: 1000px;
@@ -12,4 +14,30 @@ iframe {
 
 .course {
   margin-bottom: 1px;
+}
+
+.modal-dialog {
+  width: 90%;
+
+  .modal-body {
+    overflow-x: scroll;
+
+    table {
+      width: 100%;
+    }
+
+    > table {
+      border: 1px solid $table-border;
+      min-width: 900px;
+    }
+
+    th {
+      text-align: center;
+    }
+
+    td,
+    th {
+      padding: 2px;
+    }
+  }
 }
