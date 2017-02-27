@@ -56,7 +56,7 @@
   }]);
 
   app.factory('schedule', ['$http', ($http) => {
-    let BASE_URL = 'http://ec2-54-165-242-22.compute-1.amazonaws.com:4567';
+    let BASE_URL = 'http://107.20.22.194:4567';
     return {
       generate: (data) => {
         return $http.post(`${BASE_URL}/`, data);
